@@ -21,6 +21,7 @@ const Login = () => {
       .then((response) => {
         if(response.data.ok=== true) {
             localStorage.setItem("accessToken", response.data.token)
+            window.location.reload()
         }
         console.log(response.data.token); // Xử lý khi yêu cầu thành công (mã trạng thái 200)
       })
