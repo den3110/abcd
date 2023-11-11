@@ -83,4 +83,3 @@ mock.onPost('/api/login').reply(config => {
     });
   
 
-export default mock;

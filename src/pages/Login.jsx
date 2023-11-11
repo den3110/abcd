@@ -3,39 +3,45 @@ import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
-import mock from "../mockapi/mock";
-
 // import { generateMockToken } from "../mockapi/fakejwt";
 const Login = () => {
-
-  const [account, setAccount]= useState()
-  const [password, setPassword]= useState()
-  const handleLogin = (e) => {
-    e.preventDefault()
-    // Sử dụng axios như bạn đã làm bình thường trong ứng dụng của bạn
-    axios
-      .post("/api/login", {
-        account,
-        password,
-      })
-      .then((response) => {
-        if(response.data.ok=== true) {
-            localStorage.setItem("accessToken", response.data.token)
-            window.location.reload()
-        }
-        console.log(response.data.token); // Xử lý khi yêu cầu thành công (mã trạng thái 200)
-      })
-      .catch((error) => {
-        if (error.response) {
-            console.log(error)
-          // Nếu có phản hồi từ server, kiểm tra mã trạng thái trong đối tượng error.response
-          console.log("Status code:", error.response.status);
-          console.log("Error data:", error.response.data); // Dữ liệu lỗi từ server
-        } else {
-          // Nếu không có phản hồi từ server (ví dụ: lỗi mạng), xử lý lỗi ở đây
-          console.error("Network error:", error.message);
-        }
+  const [account, setAccount] = useState();
+  const [password, setPassword] = useState();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res= await axios({
+        url: "https://dovio.net/api/auth/auth/token",
+        method: "post",
+        data: {
+          client_id: "dovio.net",
+          grant_type: "password",
+          email: account,
+          password: password,
+          captcha: "string",
+          captcha_geetest: {
+            captcha_output: "",
+            gen_time: "",
+            lot_number: "",
+            pass_token: "",
+          },
+        },
       });
+      const result= await res.data
+      if(result.ok=== true) {
+        localStorage.setItem("accessToken", result.d.access_token)
+        localStorage.setItem("refreshToken", result.d.refresh_token)
+        window.location.reload()
+      }
+      else {
+        alert(result.m)
+      }
+      console.log(result)
+    } catch (error) {
+      console.log(error.response)
+      
+    }
+    // Sử dụng axios như bạn đã làm bình thường trong ứng dụng của bạn
   };
   return (
     <div>
@@ -108,7 +114,7 @@ const Login = () => {
                       placeholder="Your Email Address"
                       required
                       value={account}
-                      onChange={(e)=> setAccount(e.target.value)}
+                      onChange={(e) => setAccount(e.target.value)}
                     />
                     <input
                       id="password"
@@ -119,7 +125,7 @@ const Login = () => {
                       type="password"
                       placeholder="Your Password"
                       value={password}
-                      onChange={(e)=> setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <div className="row-form style-1">
