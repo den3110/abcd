@@ -59,8 +59,6 @@ const routes = [
   { path: '/create-item', component: <CreateItem />},
   { path: '/edit-profile', component: <EditProfile />},
   { path: '/ranking', component: <Ranking />},
-  { path: '/login', component: <Login />},
-  { path: '/sign-up', component: <SignUp />},
   { path: '/no-result', component: <NoResult />},
   { path: '/faq', component: <FAQ />},
   { path: '/contact-01', component: <Contact01 />},
