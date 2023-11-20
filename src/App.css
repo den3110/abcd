@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+.language-selector {
+  margin: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  padding-right: 20px
+}
+
+.option-list {
+  width: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.option {
+  padding: 8px;
+  cursor: pointer;
+  color: #000;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}

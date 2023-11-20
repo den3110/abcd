@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 // import { generateMockToken } from "../mockapi/fakejwt";
 const Login = () => {
   const [account, setAccount] = useState();
   const [password, setPassword] = useState();
+  const {t }= useTranslation()
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -52,17 +54,17 @@ const Login = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Login</h1>
+                <h1 className="heading text-center">{t("login")}</h1>
               </div>
               <div className="breadcrumbs style2">
                 <ul>
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">{t("home")}</Link>
                   </li>
                   <li>
-                    <Link to="#">Pages</Link>
+                    <Link to="#">{t("pages")}</Link>
                   </li>
-                  <li>Login</li>
+                  <li>{t("login")}</li>
                 </ul>
               </div>
             </div>
@@ -74,7 +76,7 @@ const Login = () => {
           <div className="row">
             <div className="col-12">
               <h2 className="tf-title-heading ct style-1">
-                Login To Points Store
+                {t("login_header")}
               </h2>
               {/* 
                             <div className="flat-form box-login-social">
@@ -100,7 +102,7 @@ const Login = () => {
               <div className="flat-form box-login-email">
                 <div className="box-title-login">
                   {/* <h5>Or login with email</h5> */}
-                  <h5>Login with email</h5>
+                  <h5>{t("login_header_2")}</h5>
                 </div>
 
                 <div className="form-inner">
@@ -111,7 +113,7 @@ const Login = () => {
                       tabIndex="1"
                       aria-required="true"
                       type="text"
-                      placeholder="Your Email Address"
+                      placeholder={t("placeholder_email")}
                       required
                       value={account}
                       onChange={(e) => setAccount(e.target.value)}
@@ -123,23 +125,23 @@ const Login = () => {
                       aria-required="true"
                       required
                       type="password"
-                      placeholder="Your Password"
+                      placeholder={t("placeholder_password")}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <div className="row-form style-1">
                       <label>
-                        Remember me
+                        {t("remember_me")}
                         <input type="checkbox" />
                         <span className="btn-checkbox"></span>
                       </label>
                       <Link to="#" className="forgot-pass">
-                        Forgot Password ?
+                        {t("forgot_password")} ?
                       </Link>
                     </div>
 
-                    <button className="submit">Login</button>
+                    <button className="submit">{t("login")}</button>
                   </form>
                 </div>
               </div>

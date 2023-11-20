@@ -8,11 +8,12 @@ import logodark from '../../assets/images/logo/logo_dark.png'
 import logodark2x from '../../assets/images/logo/logo_dark@2x.png'
 import imgsun from '../../assets/images/icon/sun.png'
 import avt from '../../assets/images/avatar/avt-2.jpg'
-
+import LanguageSwitcher from '../LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
     const { pathname } = useLocation();
-
+    const { t } = useTranslation();
     const headerRef = useRef (null)
     useEffect(() => {
         window.addEventListener('scroll', isSticky);
@@ -66,7 +67,7 @@ const Header = () => {
                                         {
                                             menus.map((data,index) => (
                                                 <li key={index} onClick={()=> handleOnClick(index)} className={`menu-item ${data.namesub ? 'menu-item-has-children' : '' } ${activeIndex === index ? 'active' : ''} ` }   >
-                                                    <Link to={data.links}>{data.name}</Link>
+                                                    <Link to={data.links}>{t(data.name)}</Link>
                                                     {
                                                          data.namesub &&
                                                          <ul className="sub-menu" >
@@ -88,6 +89,7 @@ const Header = () => {
                                     </ul>
                                 </nav>
                                 <div className="flat-search-btn flex">
+                                    <LanguageSwitcher />   
                                     <div className="header-search flat-show-search" id="s1">
                                         <Link to="#" className="show-search header-search-trigger" onClick={searchBtn}>
                                             <i className="far fa-search"></i>
@@ -102,7 +104,7 @@ const Header = () => {
                                         </div>
                                     </div>
                                     <div className="sc-btn-top mg-r-12" id="site-header">
-                                        <Link to="/login" className="sc-button header-slider style style-1 wallet fl-button pri-1"><span>Account connect
+                                        <Link to="/login" className="sc-button header-slider style style-1 wallet fl-button pri-1"><span>{t("account_connect")}
                                         </span></Link>
                                     </div>
 

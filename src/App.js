@@ -3,8 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import routes from "./pages/index";
 import { useEffect, useState } from "react";
 import getProfileApi from "./api/profile";
-import { jwtDecode } from "jwt-decode";
 import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import './i18n';
 
 function App() {
   const [auth, setAuth] = useState();
@@ -59,6 +60,7 @@ function App() {
       {auth === false && (
         <>
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </>
       )}
